@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MarkdownView.Models.Index>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .item-header {
+        background-color: rgb(0, 161, 193);
+        color: rgb(255, 255, 255) !important;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            @foreach (var index in Model)
+            {
+            <div class="list-group">
+                <div class="list-group-item item-header">@index.Name</div>
+            @foreach (var item in index.Pages)
+            {
+                <a class="list-group-item" href='@Url.Content("~/" + index.Name + "/" + item)'>@item</a>
+            }
+            </div>
+            }
+        </div>
+        <div class="col-md-4">
+            <img src='@Url.Content("~/content/logo.png")' class='pull-right'/>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
